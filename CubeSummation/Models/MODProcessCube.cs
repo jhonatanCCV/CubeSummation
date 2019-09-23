@@ -16,13 +16,13 @@ namespace CubeSummation.Models
         [Required]
         public String txtTest { get; set; }
         
-        public String respuesta { get; set; }
+        public String response { get; set; }
 
         private double[,,] cube;
 
         public MODProcessCube()
         {
-            this.respuesta = "";
+            this.response = "";
         }
 
         public MODProcessCube(String test)
@@ -34,7 +34,7 @@ namespace CubeSummation.Models
 
         public void AddDataCube()
         {
-            String resDatos = "";
+            String ansData = "";
             byte[] byteArray = Encoding.ASCII.GetBytes(txtTest);
             Stream sreader = new MemoryStream(byteArray);
             StreamReader sr = new StreamReader(sreader);
@@ -68,7 +68,7 @@ namespace CubeSummation.Models
                         else if(comand[0].Equals("QUERY"))
                         {
                             double suma = CubeSum(comand, cube);
-                            resDatos += suma + "\n";
+                            ansData += suma + "\n";
                         }
 
 
@@ -77,11 +77,11 @@ namespace CubeSummation.Models
             }
             else
             {
-                respuesta = "No puede hacer más de 50 pruebas";
+                response = "No puede hacer más de 50 pruebas, el taaño de la matriz debe ser menor a 50 y mayor a 1, ";
             }
 
 
-            respuesta = resDatos;
+            response = resDatos;
          
 
 //            return respuesta;
